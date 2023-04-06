@@ -38,7 +38,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public DepartmentDto getDepartmentByCode(String departmentCode) {
-		Department department = departmentRepository.findByDepartmentCode(departmentCode);
+			Department department = null;
+		
+			department = departmentRepository.findByDepartmentCode(departmentCode);
+			if(department == null)
+			throw new ResourceNotFoundException("No value present");
+		
 		/* convert department to department dto using Model Mapper
 
 		DepartmentDto departmentDto = mapper.map(department, DepartmentDto.class);
